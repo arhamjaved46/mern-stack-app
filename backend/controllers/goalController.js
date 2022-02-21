@@ -6,7 +6,7 @@ const Goal = require('../models/goalModel')
 // @access Private
 const getGoals = asyncHandler(async (req, res) => {
     const goal = await Goal.find()
-    res.status(200).json(Goal)
+    res.status(200).json(goal)
 })
 
 // @desc Set goal 
@@ -54,9 +54,9 @@ const deleteGoal = asyncHandler(async (req, res) => {
         throw new Error('Goal not exist!')
     }
 
-    const deletedGoal = await Goal.findByIdAndDelete(req.params.id)
+    goal.remove()
 
-    res.status(200).json(deletedGoal)
+    res.status(200).json(`Id removed: ${req.params.id}`)
 })
 
 module.exports = {
